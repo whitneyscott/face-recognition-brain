@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-//*** move next line to backend to protect key from hacking
-//import Clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
 import Signin from './components/Signin/Signin';
@@ -77,7 +75,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-      fetch('http://localhost:3000/imageurl', {
+      fetch('https://arcane-basin-64415.herokuapp.com/imageurl', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -87,7 +85,7 @@ class App extends Component {
       .then(response =>response.json())
       .then(response => {
         if (response) {
-          fetch('http://localhost:3000/image', {
+          fetch('https://arcane-basin-64415.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -104,6 +102,7 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
+  
 
   onRouteChange = (route) => {
     if (route === 'signout') {
